@@ -15,12 +15,10 @@ class NodeServiceImpl : NodeService {
     val language = ""
 
     override fun getRecording(sermonId: String): Recording {
-        val response = makeHttpRequest("sermon_info", "sermonID", sermonId)
-
-        return Recording.createFromJson(JsonObject(response.jsonObject).getArray("results")[0])
+        return getRecordingFromEndpoint("sermons/${sermonId}")
     }
 
-    private fun makeHttpRequest(endpoint: String, parameterName: String, parameterValue: String): Response {
+    private fun makeHttpRequest(endpoint: String, parameterName: String = "", parameterValue: String = ""): Response {
         return SermonAudioHttp(apiKey).getNode("2", endpoint, parameterName, URLEncoder.encode(parameterValue, "UTF-8"))
     }
 
@@ -28,8 +26,8 @@ class NodeServiceImpl : NodeService {
         return getRecordingsFromEndpoint("sermons", "languageCode", language)
     }
 
-    override fun getSpeakers(sourceId: String): List<Speaker> {
-        val response = makeHttpRequest("speakers_for_source", "sourceID", sourceId)
+    override fun getSpeakers(broadcasterId: String): List<Speaker> {
+        val response = makeHttpRequest("speakers", "broadcasterID", broadcasterId)
 
         val speakers = JsonObject(response.jsonObject).getArray("results")
 
@@ -37,14 +35,21 @@ class NodeServiceImpl : NodeService {
     }
 
     override fun getRecordingsBySpeaker(speakerName: String): List<Recording> {
-        return getRecordingsFromEndpoint("sermons_by_speaker", "speakerName", speakerName)
+        return getRecordingsFromEndpoint("sermons", "speakerName", speakerName)
     }
 
-    private fun getRecordingsFromEndpoint(endpointName: String, parameterName: String, parameterValue: String): List<Recording> {
+    private fun getRecordingsFromEndpoint(endpointName: String, parameterName: String = "", parameterValue: String = ""): List<Recording> {
         val response = makeHttpRequest(endpointName, parameterName, parameterValue)
         print(response)
         val recordings = JsonObject(response.jsonObject).getArray("results")
 
         return recordings.map { jsonObject -> Recording.createFromJson(jsonObject) }
+    }
+
+    private fun getRecordingFromEndpoint(endpointName: String, parameterName: String = "", parameterValue: String = ""): Recording {
+        val response = makeHttpRequest(endpointName, parameterName, parameterValue)
+        val recordingJson = JsonObject(response.jsonObject)
+
+        return Recording.createFromJson(recordingJson)
     }
 }

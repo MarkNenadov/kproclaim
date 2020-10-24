@@ -8,7 +8,13 @@ abstract class BaseApiUrlBuilder: ApiUrlBuilder {
     abstract fun getBuilderName() : String
 
     override fun build(version: String, endpoint: String, parameterName: String, parameterValue: String ) : String {
-        return "${baseUrl}v$version/${getBuilderName()}/$endpoint?$parameterName=$parameterValue"
+        val endpointUrl = "${baseUrl}v$version/${getBuilderName()}/$endpoint";
+
+        if ( parameterName != "" && parameterValue != "" ) {
+            return endpointUrl + "?$parameterName=$parameterValue";
+        }
+
+        return endpointUrl;
     }
 
     override fun build(version: String, endpoint: String, parameterMap: Map<String, String> ) : String {

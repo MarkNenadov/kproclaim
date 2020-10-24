@@ -10,5 +10,5 @@ interface NodeService {
 
     fun getAllRecordings() : List<Recording>
 
-    fun getSpeakers(sourceId: String) : List<Speaker>
+    fun getSpeakers(broadcasterId: String) : List<Speaker>
 }

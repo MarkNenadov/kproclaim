@@ -6,7 +6,7 @@ import org.pythonbyte.krux.url.utf8Url
 class Recording {
     var sermonId = ""
     var speaker = Speaker()
-    var source = RecordingSource()
+    var broadcaster = Broadcaster()
     var datePublished = ""
     var preachDate = "" // YYYY-MM-DD
     var fullTitle = ""
@@ -30,7 +30,7 @@ class Recording {
         fun createFromJson(jsonObject: JsonObject): Recording {
             val recording = Recording()
             recording.speaker = Speaker.createFromJson(jsonObject.getObject("speaker"))
-            //recording.source = RecordingSource.createFromJson(jsonObject.getObject("source"))
+            recording.broadcaster = Broadcaster.createFromJson(jsonObject.getObject("broadcaster"))
             recording.datePublished = jsonObject.getString("publishDate")
             recording.preachDate = jsonObject.getString("preachDate")
             recording.sermonId = jsonObject.getString("sermonID")

@@ -16,16 +16,4 @@ class SermonAudioHttpTest {
         assertNotNull(result)
         assertEquals(expectedJson, result.text)
     }
-
-    @Test
-    fun testGetNodeWhenX() {
-        val response = sermonAudioHttp.getNode("2", "sermons", "languageCode", "eng")
-
-        assertNotNull(response.jsonObject)
-
-        val nextPageUrl = response.jsonObject.getString("next")
-        val nodeDisplayName = response.jsonObject.getString("nodeDisplayName")
-        assertEquals("/v2/node/sermons?languageCode=eng&page=2", nextPageUrl)
-        assertEquals("sermons_list", nodeDisplayName)
-    }
 }
