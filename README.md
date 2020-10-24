@@ -3,7 +3,7 @@ A Kotlin interface to SermonAudio's API endpoints (https://api.sermonaudio.com/)
 
 ### Current Release ###
 
-* v0.1.1 - https://github.com/MarkNenadov/kproclaim/releases/download/v0.1.1/kproclaim.jar
+* v1.0 - https://github.com/MarkNenadov/kproclaim/releases/download/v1.0/kproclaim.jar
 
 ### TODO ###
 
