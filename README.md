@@ -1,5 +1,5 @@
 # kproclaim
-A Kotlin interface to SermonAudio's API endpoints (https://api.sermonaudio.com/). Also see [kproclaim-server](https://github.com/MarkNenadov/kproclaim), which implements this interface to provide a GraphQL API.
+A Kotlin interface to SermonAudio's API endpoints (https://api.sermonaudio.com/). Also see [kproclaim-server](https://github.com/MarkNenadov/kproclaim-server), which implements this interface to provide a GraphQL API.
 
 ### Current Release ###
 
