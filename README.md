@@ -3,7 +3,8 @@ A Kotlin interface to SermonAudio's API endpoints (https://api.sermonaudio.com/)
 
 ### Current Release ###
 
-* v1.0 - https://github.com/MarkNenadov/kproclaim/releases/download/v1.0/kproclaim.jar
+* v1.0 (introduce API v2 support) - https://github.com/MarkNenadov/kproclaim/releases/download/v1.0/kproclaim.jar
+* v1.1 (better handling on bad API key) -  - https://github.com/MarkNenadov/kproclaim/releases/download/v1.1/kproclaim.jar
 
 ### TODO ###
 * Better handling when api key is invalid
