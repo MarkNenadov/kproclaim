@@ -6,6 +6,6 @@ A Kotlin interface to SermonAudio's API endpoints (https://api.sermonaudio.com/)
 * v1.0 - https://github.com/MarkNenadov/kproclaim/releases/download/v1.0/kproclaim.jar
 
 ### TODO ###
-
+* Better handling when api key is invalid
 * Finish create_sermon endpoint
 * Implement upload_audio
