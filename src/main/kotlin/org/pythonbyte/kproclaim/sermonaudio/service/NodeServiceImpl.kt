@@ -19,7 +19,17 @@ class NodeServiceImpl : NodeService {
     }
 
     private fun makeHttpRequest(endpoint: String, parameterName: String = "", parameterValue: String = ""): Response {
-        return SermonAudioHttp(apiKey).getNode("2", endpoint, parameterName, URLEncoder.encode(parameterValue, "UTF-8"))
+        val response = SermonAudioHttp(apiKey).getNode("2", endpoint, parameterName, URLEncoder.encode(parameterValue, "UTF-8"))
+
+        if ( response.statusCode == 500 ) {
+            throw Exception( "500 code received from API, probable cause is bad api key. Url [${response.url}]")
+        } else if ( response.statusCode == 200 ) {
+            print( "Successful API Request [${response.url}]")
+        } else {
+            print(response)
+        }
+
+        return response
     }
 
     override fun getAllRecordings(): List<Recording> {
@@ -40,7 +50,7 @@ class NodeServiceImpl : NodeService {
 
     private fun getRecordingsFromEndpoint(endpointName: String, parameterName: String = "", parameterValue: String = ""): List<Recording> {
         val response = makeHttpRequest(endpointName, parameterName, parameterValue)
-        print(response)
+
         val recordings = JsonObject(response.jsonObject).getArray("results")
 
         return recordings.map { jsonObject -> Recording.createFromJson(jsonObject) }
