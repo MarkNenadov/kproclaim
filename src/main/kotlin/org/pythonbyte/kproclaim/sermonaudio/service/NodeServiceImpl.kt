@@ -22,7 +22,7 @@ class NodeServiceImpl : NodeService {
 
     private fun makeHttpRequest(endpoint: String, parameterName: String, parameterValue: String): Response {
         return SermonAudioHttp(apiKey)
-            .getNode("1", endpoint, parameterName, URLEncoder.encode(parameterValue, "UTF-8"))
+            .getNode("2", endpoint, parameterName, URLEncoder.encode(parameterValue, "UTF-8"))
     }
 
     override fun getAllRecordings(): List<Recording> {

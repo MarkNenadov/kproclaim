@@ -7,7 +7,7 @@ class BroadcasterApiUrlBuilderTest {
     @Test
     fun testBuild() {
         val broadcasterApiUrlBuilder = BroadcasterApiUrlBuilder()
-        val expectedValue = "https://api.sermonaudio.com/v1/broadcaster/bob?name=mark&age=4"
-        assertEquals(expectedValue, broadcasterApiUrlBuilder.build("1", "bob", mapOf("name" to "mark", "age" to "4")))
+        val expectedValue = "https://api.sermonaudio.com/v2/broadcaster/bob?name=mark&age=4"
+        assertEquals(expectedValue, broadcasterApiUrlBuilder.build("2", "bob", mapOf("name" to "mark", "age" to "4")))
     }
 }
