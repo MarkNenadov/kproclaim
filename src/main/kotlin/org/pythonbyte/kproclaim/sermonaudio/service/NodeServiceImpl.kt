@@ -21,12 +21,11 @@ class NodeServiceImpl : NodeService {
     }
 
     private fun makeHttpRequest(endpoint: String, parameterName: String, parameterValue: String): Response {
-        return SermonAudioHttp(apiKey)
-            .getNode("2", endpoint, parameterName, URLEncoder.encode(parameterValue, "UTF-8"))
+        return SermonAudioHttp(apiKey).getNode("2", endpoint, parameterName, URLEncoder.encode(parameterValue, "UTF-8"))
     }
 
     override fun getAllRecordings(): List<Recording> {
-        return getRecordingsFromEndpoint("sermons_by_language", "languageCode", language)
+        return getRecordingsFromEndpoint("sermons", "languageCode", language)
     }
 
     override fun getSpeakers(sourceId: String): List<Speaker> {
@@ -43,7 +42,7 @@ class NodeServiceImpl : NodeService {
 
     private fun getRecordingsFromEndpoint(endpointName: String, parameterName: String, parameterValue: String): List<Recording> {
         val response = makeHttpRequest(endpointName, parameterName, parameterValue)
-
+        print(response)
         val recordings = JsonObject(response.jsonObject).getArray("results")
 
         return recordings.map { jsonObject -> Recording.createFromJson(jsonObject) }

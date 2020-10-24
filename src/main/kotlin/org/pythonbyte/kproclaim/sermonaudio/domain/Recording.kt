@@ -29,11 +29,8 @@ class Recording {
     companion object {
         fun createFromJson(jsonObject: JsonObject): Recording {
             val recording = Recording()
-            recording.speaker =
-                    Speaker.createFromJson(jsonObject.getObject("speaker"))
-            recording.source = RecordingSource.createFromJson(
-                jsonObject.getObject("source")
-            )
+            recording.speaker = Speaker.createFromJson(jsonObject.getObject("speaker"))
+            //recording.source = RecordingSource.createFromJson(jsonObject.getObject("source"))
             recording.datePublished = jsonObject.getString("publishDate")
             recording.preachDate = jsonObject.getString("preachDate")
             recording.sermonId = jsonObject.getString("sermonID")
