@@ -10,9 +10,9 @@ import java.net.URLEncoder
 
 @Component
 @SuppressWarnings("unused")
-class NodeServiceImpl : NodeService {
-    val apiKey = ""
-    val language = ""
+open class NodeServiceImpl : NodeService {
+    open val apiKey = ""
+    open val language = ""
 
     override fun getRecording(sermonId: String): Recording {
         return getRecordingFromEndpoint("sermons/${sermonId}")
@@ -21,12 +21,16 @@ class NodeServiceImpl : NodeService {
     private fun makeHttpRequest(endpoint: String, parameterName: String = "", parameterValue: String = ""): Response {
         val response = SermonAudioHttp(apiKey).getNode("2", endpoint, parameterName, URLEncoder.encode(parameterValue, "UTF-8"))
 
-        if ( response.statusCode == 500 ) {
-            throw Exception( "500 code received from API, probable cause is bad api key. Url [${response.url}]")
-        } else if ( response.statusCode == 200 ) {
-            print( "Successful API Request [${response.url}]")
-        } else {
-            print(response)
+        when ( response.statusCode ) {
+            500 -> {
+                throw Exception( "500 code received from API, probable cause is bad api key. Url [${response.url}]")
+            }
+            200 -> {
+                print( "Successful API Request [${response.url}]")
+            }
+            else -> {
+                print( response )
+            }
         }
 
         return response

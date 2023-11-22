@@ -19,7 +19,7 @@ class NodeServiceTest {
 
         val recordings = nodeService.getAllRecordings()
 
-        assertNotNull(recordings);
+        assertNotNull(recordings)
         assertNotEquals(0, recordings.size)
         assertEquals("en", recordings[0].languageCode)
     }
@@ -30,10 +30,10 @@ class NodeServiceTest {
 
         val speakerName = nodeService.getAllRecordings().get(0).speaker.fullName
 
-        println( "looking up speakers with the name " + speakerName )
+        println("looking up speakers with the name " + speakerName)
         val recordings = nodeService.getRecordingsBySpeaker(speakerName)
 
-        assertNotNull(recordings);
+        assertNotNull(recordings)
         assertNotEquals(0, recordings.size)
         assertEquals("en", recordings[0].languageCode)
         assertEquals(speakerName, recordings[0].speaker.fullName)
@@ -45,10 +45,10 @@ class NodeServiceTest {
 
         val broadcasterId = nodeService.getAllRecordings().get(0).broadcaster.broadcasterId
 
-        println( "looking up speakers with broadcasterID " + broadcasterId )
+        println("looking up speakers with broadcasterID " + broadcasterId)
         val speakers = nodeService.getSpeakers(broadcasterId)
 
-        assertNotNull(speakers);
+        assertNotNull(speakers)
         assertNotEquals(0, speakers.size)
     }
 
@@ -59,10 +59,10 @@ class NodeServiceTest {
         val recordingId = nodeService.getAllRecordings().get(0).sermonId
         val broadcasterId = nodeService.getAllRecordings().get(0).broadcaster.broadcasterId
 
-        println( "looking up speakers with the id " + recordingId )
+        println("looking up speakers with the id " + recordingId)
         val recording = nodeService.getRecording(recordingId)
 
-        assertNotNull(recording);
+        assertNotNull(recording)
         assertEquals("en", recording.languageCode)
         assertEquals(recordingId, recording.sermonId)
         assertEquals(broadcasterId, recording.broadcaster.broadcasterId)

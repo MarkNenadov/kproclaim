@@ -8,11 +8,10 @@ class Broadcaster {
 
     companion object {
         fun createFromJson(jsonObject: JsonObject): Broadcaster {
-            val recordingSource = Broadcaster()
-            recordingSource.broadcasterId = jsonObject.getString("broadcasterID")
-            recordingSource.displayName = jsonObject.getString("displayName")
-
-            return recordingSource
+            return Broadcaster().apply {
+                broadcasterId = jsonObject.getString("broadcasterID")
+                displayName = jsonObject.getString("displayName")
+            }
         }
     }
 }

@@ -6,13 +6,17 @@ import org.springframework.stereotype.Component
 
 @Component
 @SuppressWarnings("unused")
-class BroadcasterServiceImpl: BroadcasterService {
+class BroadcasterServiceImpl : BroadcasterService {
     val apiKey = ""
 
     override fun createRecording(recording: Recording): Boolean {
         val response = SermonAudioHttp(apiKey)
-            .postBroadcaster("1", "create_sermon", recording.getParameterMapForCreate() )
-        println( response.text )
+            .postBroadcaster(
+                "1",
+                "create_sermon",
+                recording.getParameterMapForCreate(),
+            )
+        println(response.text)
         return true
     }
 }

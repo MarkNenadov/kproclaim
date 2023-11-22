@@ -19,30 +19,29 @@ class Recording {
 
     fun getParameterMapForCreate(): Map<String, String> {
         return mapOf(
-                "fullTitle" to utf8Url(fullTitle)!!,
-                "speakerName" to utf8Url(speaker.fullName)!!,
-                "preachDate" to utf8Url(preachDate)!!,
-                "acceptAdditionalCharges" to "false"
+            "fullTitle" to utf8Url(fullTitle)!!,
+            "speakerName" to utf8Url(speaker.fullName)!!,
+            "preachDate" to utf8Url(preachDate)!!,
+            "acceptAdditionalCharges" to "false",
         )
     }
 
     companion object {
         fun createFromJson(jsonObject: JsonObject): Recording {
-            val recording = Recording()
-            recording.speaker = Speaker.createFromJson(jsonObject.getObject("speaker"))
-            recording.broadcaster = Broadcaster.createFromJson(jsonObject.getObject("broadcaster"))
-            recording.datePublished = jsonObject.getString("publishDate")
-            recording.preachDate = jsonObject.getString("preachDate")
-            recording.sermonId = jsonObject.getString("sermonID")
-            recording.fullTitle = jsonObject.getString("fullTitle")
-            recording.displayTitle = jsonObject.getString("displayTitle")
-            recording.mp3Url = jsonObject.getString("audioFileURL")
-            recording.eventType = jsonObject.getString("eventType")
-            recording.downloadCount = jsonObject.getInt("downloadCount")
-            recording.languageCode = jsonObject.getString("languageCode")
-            recording.mp4Url = jsonObject.getString("videoFileURL")
-
-            return recording
+            return Recording().apply {
+                speaker = Speaker.createFromJson(jsonObject.getObject("speaker"))
+                broadcaster = Broadcaster.createFromJson(jsonObject.getObject("broadcaster"))
+                datePublished = jsonObject.getString("publishDate")
+                preachDate = jsonObject.getString("preachDate")
+                sermonId = jsonObject.getString("sermonID")
+                fullTitle = jsonObject.getString("fullTitle")
+                displayTitle = jsonObject.getString("displayTitle")
+                mp3Url = jsonObject.getString("audioFileURL")
+                eventType = jsonObject.getString("eventType")
+                downloadCount = jsonObject.getInt("downloadCount")
+                languageCode = jsonObject.getString("languageCode")
+                mp4Url = jsonObject.getString("videoFileURL")
+            }
         }
     }
 }

@@ -9,15 +9,14 @@ class Speaker {
 
     companion object {
         fun createFromJson(jsonObject: JsonObject): Speaker {
-            val speaker = Speaker()
-            speaker.fullName = jsonObject.getString("displayName")
-            speaker.portraitUrl = jsonObject.getString("portraitURL")
+            return Speaker().apply {
+                fullName = jsonObject.getString("displayName")
+                portraitUrl = jsonObject.getString("portraitURL")
 
-            if (jsonObject.hasKey("bio")) {
-                speaker.bio = jsonObject.getString("bio")
+                if (jsonObject.hasKey("bio")) {
+                    bio = jsonObject.getString("bio")
+                }
             }
-
-            return speaker
         }
     }
 }
